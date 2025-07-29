@@ -1,6 +1,7 @@
 # Calculadora-liquidacion-definitiva
 
 Jose manuel Diaz Villa
+
 Isaac Daniel Mosquera
 
 Proyecto en conjunto con contadores para realizar el cálculo efectivo de la liquidación total definitiva de un trabajador, se requiere ingresar el salario , si tiene derecho a cesantías , fecha de retiro y vacaciones no cobradas.
