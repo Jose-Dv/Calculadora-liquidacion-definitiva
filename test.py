@@ -30,6 +30,9 @@ def renuncia_voluntaria(self):
       self.assertAlmostEqual(resultado["intereses_cesantias"], 12021.41,3)
       self.assertAlmostEqual(resultado["prima"], 400713.50, 3)
       self.assertAlmostEqual(resultado["vacaciones"], 675000,3)
-      self.assertAlmostEqual(resultado["total"], 875958.41,3)  
+      self.assertAlmostEqual(resultado["total"], 875958.41,3)
+def salario_integral(self):
+        resultado = liquidacion.calculo_salario_integral()
+        self.assertEqual(resultado, "El salario integral no genera prestaciones sociales.")
 if __name__ == '__main__':
     unittest.main()

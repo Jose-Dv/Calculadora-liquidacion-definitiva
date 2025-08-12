@@ -12,3 +12,5 @@ def calcular_liquidacion_definitiva(salario, dias, auxilio):
         "vacaciones": round(vacaciones, 2),
         "total": round(total, 2)
     }
+def calculo_salario_integral():
+    return "El salario integral no genera prestaciones sociales."
