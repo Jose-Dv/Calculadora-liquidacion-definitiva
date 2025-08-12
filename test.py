@@ -34,5 +34,12 @@ def renuncia_voluntaria(self):
 def salario_integral(self):
         resultado = liquidacion.calculo_salario_integral()
         self.assertEqual(resultado, "El salario integral no genera prestaciones sociales.")
+def contrato_menor_a_un_mes(self):
+        resultado = liquidacion.calcular_liquidacion_definitiva(1200000, 15, 102854)
+        self.assertAlmostEqual(resultado["cesantias"]54285.58, 3)
+        self.assertAlmostEqual(resultado["intereses_cesantias"],271,43, 2)
+        self.assertAlmostEqual(resultado["prima"]54285.58, 3)
+        self.assertAlmostEqual(resultado["vacaciones"]50000)
+        self.assertAlmostEqual(resultado["total"]125842.59, 2)
 if __name__ == '__main__':
     unittest.main()
