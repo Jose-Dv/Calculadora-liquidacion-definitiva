@@ -12,15 +12,15 @@ def calcular_liquidacion_definitiva(salario, dias, auxilio):
     base = salario + auxilio  # salario + auxilio para prima y cesantías
     cesantias = base * dias / 360
     intereses_cesantias = cesantias * 0.12 * dias / 360
-    prima = base * dias / 360
+    prima = base * dias / 180
     vacaciones = salario * 15 * dias / 360 
     total = cesantias + intereses_cesantias + prima + vacaciones
     return {
-        "cesantias": round(cesantias, 2),
-        "intereses_cesantias": round(intereses_cesantias, 2),
+        "cesantias": round(cesantias),
+        "intereses_cesantias": round(intereses_cesantias),
         "prima": round(prima, 2),
-        "vacaciones": round(vacaciones, 2),
-        "total":(total, 2)
+        "vacaciones": round(vacaciones),
+        "total":(total)
     }
 
 def calculo_salario_integral():
