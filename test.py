@@ -5,18 +5,18 @@ class TestLiquidacion(unittest.TestCase):
 
     def test_calcular_liquidacion_definitiva(self):
         resultado = liquidacion.calcular_liquidacion_definitiva(2000000, 365, 102854)
-        self.assertAlmostEqual(resultado["cesantias"], 2134393.81, 2)
-        self.assertAlmostEqual(resultado["intereses_cesantias"], 259964.46, 2)
-        self.assertAlmostEqual(resultado["prima"], 2134393.81, 2)
-        self.assertAlmostEqual(resultado["vacaciones"], 304861.11, 2)
-        self.assertAlmostEqual(resultado["total"], 4833613.19, 2)
+        self.assertAlmostEqual(resultado["cesantias"], 2132060,0)
+        self.assertAlmostEqual(resultado["intereses_cesantias"], 259401, 2)
+        self.assertAlmostEqual(resultado["prima"], 2132060, 0)
+        self.assertAlmostEqual(resultado["vacaciones"], 1013889, 2)
+        self.assertAlmostEqual(resultado["total"], 5537410,0)
     def test_sin_auxilio_transporte(self):
         resultado = liquidacion.calcular_liquidacion_definitiva(2000000, 365, 0)
-        self.assertAlmostEqual(resultado["cesantias"], 2027777.78, 2)
-        self.assertAlmostEqual(resultado["intereses_cesantias"], 243333.33, 2)
+        self.assertAlmostEqual(resultado["cesantias"], 2027777, 2)
+        self.assertAlmostEqual(resultado["intereses_cesantias"], 243333, 2)
         self.assertAlmostEqual(resultado["prima"], 2027777.78, 2)
-        self.assertAlmostEqual(resultado["vacaciones"], 304861.11, 2)
-        self.assertAlmostEqual(resultado["total"], 4603750.00, 2)
+        self.assertAlmostEqual(resultado["vacaciones"], 304861, 2)
+        self.assertAlmostEqual(resultado["total"], 4603750, 2)
     def test_trabajo_medio_tiempo(self):
         resultado = liquidacion.calcular_liquidacion_definitiva(1000000, 180, 102854)
         self.assertAlmostEqual(resultado["cesantias"], 551427.00, 2)
