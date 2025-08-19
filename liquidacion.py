@@ -8,6 +8,8 @@ def calcular_liquidacion_definitiva(salario, dias, auxilio):
         raise ValueError("El salario no puede ser negativo.")
     if dias < 0:
         raise ValueError("Los días no pueden ser negativos.")
+    if auxilio < 0:
+        raise ValueError("El auxilio de transporte no puede ser negativo.")
 
     base = salario + auxilio  # salario + auxilio para prima y cesantías
     cesantias = base * dias / 360
