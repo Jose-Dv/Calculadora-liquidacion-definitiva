@@ -1,6 +1,7 @@
 import unittest
-import liquidacion
-
+from model import liquidacion
+import sys 
+sys.path.append("src")
 class TestLiquidacion(unittest.TestCase):
     def test_muy_pocos_dias_trabajados(self):
         resultado = liquidacion.calcular_liquidacion_definitiva(1000000, 1,0)
