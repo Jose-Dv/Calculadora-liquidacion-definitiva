@@ -1,9 +1,9 @@
 import unittest
-from model import liquidacion
 import sys 
 sys.path.append("src")
+from model import liquidacion
 class TestLiquidacion(unittest.TestCase):
-    def test_muy_pocos_dias_trabajados(self):
+    def test_solo_un_dia_trabajado(self):
         resultado = liquidacion.calcular_liquidacion_definitiva(1000000, 1,0)
         self.assertAlmostEqual(resultado["cesantias"], 2778,0)
         self.assertAlmostEqual(resultado["intereses_cesantias"],1, 0)
@@ -45,7 +45,6 @@ class TestLiquidacion(unittest.TestCase):
         self.assertAlmostEqual(resultado["prima"], 54285.63, 0)
         self.assertAlmostEqual(resultado["vacaciones"], 25000, 0)
         self.assertAlmostEqual(resultado["total"], 133843, 0)
-    # Test excepciones
     def test_salario_negativo(self):
         with self.assertRaises(ValueError) as context:
             liquidacion.calcular_liquidacion_definitiva(-1000000, 30, 102854)
@@ -54,7 +53,6 @@ class TestLiquidacion(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             liquidacion.calcular_liquidacion_definitiva(1000000, -30, 102854)
         self.assertEqual(str(context.exception), "Los días no pueden ser negativos.")
-
     def test_parametros_faltantes(self):
         with self.assertRaises(ValueError) as context:
             liquidacion.calcular_liquidacion_definitiva(None, 30, 102854)
