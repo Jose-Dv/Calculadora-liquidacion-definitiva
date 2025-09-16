@@ -2,7 +2,11 @@
 Video explicacion experto: https://drive.google.com/file/d/1c9Oo18Vego88zhcTV-6tEkw6AILwgGP_/view?usp=drive_link, https://drive.google.com/file/d/1Sn2my1YLyh8yll2mgTRcAMYdJwrQz8Hm/view?usp=drive_link
 ## 👨‍💻 Autores
 Jose manuel Diaz Villa
+
+
 Isaac Daniel Mosquera
+
+Samuel Duran
 ## 📋 Descripción del Proyecto
 Este proyecto tiene como objetivo desarrollar un **Liquidador de Nómina**, una herramienta capaz de calcular automáticamente los pagos que un empleador debe realizar a sus trabajadores, teniendo en cuenta factores como:
 - Salario base  
@@ -16,13 +20,10 @@ La aplicación permite **automatizar el cálculo**,de tu liquidacion en caso de 
 - Diseñar una interfaz amigable para ingresar y visualizar información.  
 ---
 ## ⚙️ Funcionalidades Principales
-- ✅ Cálculo de salario mensual proporcional.  
-- ✅ Registro de horas extras y recargos (nocturnos, festivos).  
+- ✅ Cálculo del total a pagar por liquidacion segun el contrato
+- ✅ Calculo de las prestaciones a pagar que componen la liquidacion.  
 - ✅ Cálculo de deducciones legales: salud, pensión, fondo de solidaridad.  
 - ✅ Cálculo de prestaciones sociales: prima, cesantías, intereses de cesantías, vacaciones.  
-- ✅ Inclusión de préstamos con tasa de interés (6%).  
-- ✅ Generación de comprobante de pago en PDF/Excel.  
-- ✅ Administración de empleados y configuración de parámetros salariales.  
 ---
 ## 📥 Variables de Entrada
 - `salario_base` (numérico): Salario mensual base del empleado.  
