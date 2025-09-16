@@ -41,11 +41,23 @@ La aplicación permite **automatizar el cálculo**,de tu liquidacion en caso de 
 ### 1. Clonar el Repositorio
 ```bash
 git clone git@github.com:Jose-Dv/Calculadora-liquidacion-definitiva.git
-2. Abrir la Terminal en Windows
+```
+### 2. Navegar al Repositorio
+```bash
+cd d:\Documentos\Programación\Proyectos\Calculadora-liquidacion-definitiva
+```
+Recuerda donde clonaste el repossitorio
+### 3. Ejecutar la interfaz
+```bash
+python src/view/interfaz.py
+```
+## 📦 Requisitos
 
-Presiona Win + R, escribe cmd y presiona Enter.
+Python 3.7 o superior
 
-3. Navegar al Directorio del Proyecto
-cd d:\Documentos\Programación\Proyectos\Liquidador-de-Nomina
+Sistema operativo: Windows
 
+Librerías externas: No requeridas (se usa unittest de la librería estándar).
+
+ 
 
