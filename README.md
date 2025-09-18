@@ -7,6 +7,12 @@ Jose manuel Diaz Villa
 Isaac Daniel Mosquera
 
 Samuel Duran
+
+## Autores Gui
+
+Juan José Ocampo Gómez
+David Garcia Villanueva
+
 ## 📋 Descripción del Proyecto
 Este proyecto tiene como objetivo desarrollar un **Liquidador de Nómina**, una herramienta capaz de calcular automáticamente los pagos que un empleador debe realizar a sus trabajadores, teniendo en cuenta factores como:
 - Salario base  
