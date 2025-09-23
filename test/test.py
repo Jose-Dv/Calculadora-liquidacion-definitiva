@@ -2,7 +2,7 @@
 import unittest
 import sys
 sys.path.append("src")
-from model import LiquidacionDefinitiva
+from model.liquidacion import LiquidacionDefinitiva
 
 class TestLiquidacion(unittest.TestCase):
 
