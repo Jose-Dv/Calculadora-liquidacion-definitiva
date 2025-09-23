@@ -13,6 +13,7 @@ Samuel Duran
 Juan José Ocampo Gómez
 
 
+
 David Garcia Villanueva
 
 ## 📋 Descripción del Proyecto
