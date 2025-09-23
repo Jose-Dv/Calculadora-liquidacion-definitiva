@@ -11,6 +11,8 @@ Samuel Duran
 ## Autores Gui
 
 Juan José Ocampo Gómez
+
+
 David Garcia Villanueva
 
 ## 📋 Descripción del Proyecto
