@@ -7,36 +7,66 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
+from kivy.graphics import Color, Line, Rectangle
 from model.liquidacion import LiquidacionDefinitiva
 
 
 class LiquidacionApp(App):
+    def crear_label_con_borde(self, texto, color_borde=(1, 1, 1, 1), grosor_borde=1):
+        """Crea un label con borde personalizado"""
+        label = Label(
+            text=texto,
+            markup=True,
+            font_size=18,
+            size_hint_y=None,
+            height=50
+        )
+        
+        # Agregar borde
+        with label.canvas.after:
+            Color(*color_borde)  # Color del borde
+            label.line = Line(rectangle=(label.x, label.y, label.width, label.height), width=grosor_borde)
+        
+        # Actualizar el borde cuando cambie el tamaño o posición
+        def actualizar_borde(instance, *args):
+            label.line.rectangle = (instance.x, instance.y, instance.width, instance.height)
+        
+        label.bind(pos=actualizar_borde, size=actualizar_borde)
+        return label
+
     def build(self):
         self.title = "Calculadora de Liquidación Definitiva"
-        layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
+        layout = BoxLayout(orientation='vertical', padding=20, spacing=15)
 
         # Input: ¿Salario integral?
-        layout.add_widget(Label(text="¿Cuenta con salario integral? (si/no):"))
+        layout.add_widget(self.crear_label_con_borde("[color=2196f3][b][size=20] ¿Cuenta con salario integral?[/size][/b][/color]", (0.13, 0.59, 0.95, 1), 1.5  ))
         self.input_integral = TextInput(multiline=False)
         layout.add_widget(self.input_integral)
 
         # Input: salario
-        layout.add_widget(Label(text="Salario mensual:"))
+        layout.add_widget(self.crear_label_con_borde("[color=ffffff] Salario mensual:[/color]"))
         self.input_salario = TextInput(multiline=False, input_filter='float')
         layout.add_widget(self.input_salario)
 
         # Input: días trabajados
-        layout.add_widget(Label(text="Días trabajados:"))
+        layout.add_widget(self.crear_label_con_borde("[color=ffffff] Días trabajados:[/color]"))
         self.input_dias = TextInput(multiline=False, input_filter='int')
         layout.add_widget(self.input_dias)
 
         # Input: auxilio de transporte
-        layout.add_widget(Label(text="Auxilio de transporte (0 si no aplica):"))
+        layout.add_widget(self.crear_label_con_borde("[color=ffffff] Auxilio de transporte (0 si no aplica):[/color]"))
         self.input_auxilio = TextInput(multiline=False, input_filter='float')
         layout.add_widget(self.input_auxilio)
 
         # Botón para calcular
-        calcular_btn = Button(text="Calcular Liquidación", size_hint=(1, 0.2))
+        calcular_btn = Button(
+            text="[color=ffffff] CALCULAR LIQUIDACIÓN [/color]", 
+            markup=True, 
+            size_hint=(1, None), 
+            height=60,
+            font_size=18,
+            background_color=(0.1, 0.7, 0.1, 1)  # Verde
+        )
         calcular_btn.bind(on_press=self.calcular_liquidacion)
         layout.add_widget(calcular_btn)
 
