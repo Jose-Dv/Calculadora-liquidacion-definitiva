@@ -16,6 +16,18 @@ class LiquidacionDefinitiva:
         self.salario = salario
         self.dias_trabajados = dias_trabajados
         self.auxilio_de_transporte = auxilio_de_transporte
+        
+    @staticmethod
+    def calcular_liquidacion_salario_integral(salario, dias_trabajados):
+
+        salario_integral = (salario/30) * dias_trabajados
+        vacaciones = (salario * 0.7 * dias_trabajados) / 720
+        
+        return {
+        "salario_pendiente": round(salario_integral, 2),
+        "vacaciones": round(vacaciones, 2),
+        "nota": "No se liquidan cesantías, intereses ni prima. Solo salario y vacaciones proporcionales."
+        }
 
     def calcular(self):
         base = self.salario + self.auxilio_de_transporte  # salario + auxilio para prima y cesantías
@@ -33,6 +45,4 @@ class LiquidacionDefinitiva:
             "total": round(total)
         }
 
-    @staticmethod
-    def mensaje_salario_integral():
-        return "El salario integral no genera prestaciones sociales."
+

@@ -65,7 +65,7 @@ class LiquidacionApp(App):
             size_hint=(1, None), 
             height=60,
             font_size=18,
-            background_color=(0.1, 0.7, 0.1, 1)  # Verde
+            background_color=(0.1, 0.2, 0.3, 1)  
         )
         calcular_btn.bind(on_press=self.calcular_liquidacion)
         layout.add_widget(calcular_btn)
@@ -82,8 +82,25 @@ class LiquidacionApp(App):
         try:
             respuesta = self.input_integral.text.strip().lower()
             if respuesta == "si":
-                mensaje = LiquidacionDefinitiva.mensaje_salario_integral()
-                self.mostrar_popup("Resultado", mensaje)
+                
+                try:
+                    salario = float(self.input_salario.text)
+                    dias_trabajados = int(self.input_dias.text)
+                    
+
+                    resultado = LiquidacionDefinitiva.calcular_liquidacion_salario_integral(salario, dias_trabajados)
+
+                    mensaje = (
+                        f"Salario Pendiente: {resultado['salario_pendiente']}\n"
+                        f"Vacaciones: {resultado['vacaciones']}\n"
+                        f"Nota: {resultado['nota']}"
+                    )
+                    self.mostrar_popup("Liquidación Salario Integral", mensaje)
+                    
+                except ValueError as ve:
+                    self.mostrar_popup("Error de Validación", f"Error en salario integral: {str(ve)}")
+                except Exception as e:
+                    self.mostrar_popup("Error Debug", f"Error inesperado en salario integral: {str(e)}")
                 return
 
             salario = float(self.input_salario.text)
