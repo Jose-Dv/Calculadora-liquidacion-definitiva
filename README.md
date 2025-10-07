@@ -7,6 +7,15 @@ Jose manuel Diaz Villa
 Isaac Daniel Mosquera
 
 Samuel Duran
+
+## Autores Gui
+
+Juan José Ocampo Gómez
+
+
+
+David Garcia Villanueva
+
 ## 📋 Descripción del Proyecto
 Este proyecto tiene como objetivo desarrollar un **Liquidador de Nómina**, una herramienta capaz de calcular automáticamente los pagos que un empleador debe realizar a sus trabajadores, teniendo en cuenta factores como:
 - Salario base  
@@ -56,8 +65,36 @@ python src/view/interfaz.py
 Python 3.7 o superior
 
 Sistema operativo: Windows
+# Liquidador de Nómina Definitivo (Kivy)
 
-Librerías externas: No requeridas (se usa unittest de la librería estándar).
+Aplicación gráfica desarrollada en **Python + Kivy** para calcular la nómina de un empleado según diferentes parámetros como salario base, horas extras, tipo de hora, préstamos, cuotas e intereses.
+
+---
+
+## Requisitos
+
+- Python 3.7 o superior
+- Kivy (`pip install kivy`)
+---
+
+## Instrucciones para ejecutar
+
+1. **Clona o descarga el proyecto**
+
+2. **Instala las dependencias**
+
+```bash
+pip install kivy
+```
+
+3. **Ejecuta la aplicación**
+
+- Desde la raíz del proyecto, corre:
+
+```bash
+python src/view/ViewGui/interfaz_gui.py
+```
+.
 
  
 

@@ -1,0 +1,129 @@
+import sys
+sys.path.append("src")
+
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
+from kivy.uix.popup import Popup
+from kivy.graphics import Color, Line, Rectangle
+from model.liquidacion import LiquidacionDefinitiva
+
+
+class LiquidacionApp(App):
+    def crear_label_con_borde(self, texto, color_borde=(1, 1, 1, 1), grosor_borde=1):
+        """Crea un label con borde personalizado"""
+        label = Label(
+            text=texto,
+            markup=True,
+            font_size=18,
+            size_hint_y=None,
+            height=50
+        )
+        
+        # Agregar borde
+        with label.canvas.after:
+            Color(*color_borde)  # Color del borde
+            label.line = Line(rectangle=(label.x, label.y, label.width, label.height), width=grosor_borde)
+        
+        # Actualizar el borde cuando cambie el tamaño o posición
+        def actualizar_borde(instance, *args):
+            label.line.rectangle = (instance.x, instance.y, instance.width, instance.height)
+        
+        label.bind(pos=actualizar_borde, size=actualizar_borde)
+        return label
+
+    def build(self):
+        self.title = "Calculadora de Liquidación Definitiva"
+        layout = BoxLayout(orientation='vertical', padding=20, spacing=15)
+
+        # Input: ¿Salario integral?
+        layout.add_widget(self.crear_label_con_borde("[color=2196f3][b][size=20] ¿Cuenta con salario integral?[/size][/b][/color]", (0.13, 0.59, 0.95, 1), 1.5  ))
+        self.input_integral = TextInput(multiline=False)
+        layout.add_widget(self.input_integral)
+
+        # Input: salario
+        layout.add_widget(self.crear_label_con_borde("[color=ffffff] Salario mensual:[/color]"))
+        self.input_salario = TextInput(multiline=False, input_filter='float')
+        layout.add_widget(self.input_salario)
+
+        # Input: días trabajados
+        layout.add_widget(self.crear_label_con_borde("[color=ffffff] Días trabajados:[/color]"))
+        self.input_dias = TextInput(multiline=False, input_filter='int')
+        layout.add_widget(self.input_dias)
+
+        # Input: auxilio de transporte
+        layout.add_widget(self.crear_label_con_borde("[color=ffffff] Auxilio de transporte (0 si no aplica):[/color]"))
+        self.input_auxilio = TextInput(multiline=False, input_filter='float')
+        layout.add_widget(self.input_auxilio)
+
+        # Botón para calcular
+        calcular_btn = Button(
+            text="[color=ffffff] CALCULAR LIQUIDACIÓN [/color]", 
+            markup=True, 
+            size_hint=(1, None), 
+            height=60,
+            font_size=18,
+            background_color=(0.1, 0.2, 0.3, 1)  
+        )
+        calcular_btn.bind(on_press=self.calcular_liquidacion)
+        layout.add_widget(calcular_btn)
+
+        return layout
+
+    def mostrar_popup(self, titulo, mensaje):
+        popup = Popup(title=titulo,
+                      content=Label(text=mensaje),
+                      size_hint=(0.8, 0.4))
+        popup.open()
+
+    def calcular_liquidacion(self, instance):
+        try:
+            respuesta = self.input_integral.text.strip().lower()
+            if respuesta == "si":
+                
+                try:
+                    salario = float(self.input_salario.text)
+                    dias_trabajados = int(self.input_dias.text)
+                    
+
+                    resultado = LiquidacionDefinitiva.calcular_liquidacion_salario_integral(salario, dias_trabajados)
+
+                    mensaje = (
+                        f"Salario Pendiente: {resultado['salario_pendiente']}\n"
+                        f"Vacaciones: {resultado['vacaciones']}\n"
+                        f"Nota: {resultado['nota']}"
+                    )
+                    self.mostrar_popup("Liquidación Salario Integral", mensaje)
+                    
+                except ValueError as ve:
+                    self.mostrar_popup("Error de Validación", f"Error en salario integral: {str(ve)}")
+                except Exception as e:
+                    self.mostrar_popup("Error Debug", f"Error inesperado en salario integral: {str(e)}")
+                return
+
+            salario = float(self.input_salario.text)
+            dias = int(self.input_dias.text)
+            auxilio = float(self.input_auxilio.text)
+
+            liquidacion = LiquidacionDefinitiva(salario, dias, auxilio)
+            resultado = liquidacion.calcular()
+
+            mensaje = (
+                f"Cesantías: {resultado['cesantias']}\n"
+                f"Intereses de Cesantías: {resultado['intereses_cesantias']}\n"
+                f"Prima: {resultado['prima']}\n"
+                f"Vacaciones: {resultado['vacaciones']}\n"
+                f"Total: {resultado['total']}"
+            )
+            self.mostrar_popup("Liquidación Calculada", mensaje)
+
+        except ValueError as ve:
+            self.mostrar_popup("Error de Validación", str(ve))
+        except Exception:
+            self.mostrar_popup("Error", "Datos ingresados inválidos.")
+
+
+if __name__ == '__main__':
+    LiquidacionApp().run()
