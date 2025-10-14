@@ -94,6 +94,13 @@ pip install kivy
 ```bash
 python src/view/ViewGui/interfaz_gui.py
 ```
+## Instrucciones para conectarse a la base de datos
+debe crear un archivo en la raiz de su repositoria llama a secret_config.py que contenga los siguientes datos
+DATABASE=Nombre de la BD
+USER
+PASSWORD
+HOST
+PORT
 .
 
  
