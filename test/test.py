@@ -1,8 +1,8 @@
-
 import unittest
 import sys
-sys.path.append("src")
-from model.liquidacion import LiquidacionDefinitiva
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+from src.model.liquidacion import LiquidacionDefinitiva
 
 class TestLiquidacion(unittest.TestCase):
 
