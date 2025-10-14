@@ -1,5 +1,7 @@
+import sys
+sys.path.append("src")
 import datetime
-from liquidacion import LiquidacionDefinitiva
+from model.liquidacion import LiquidacionDefinitiva
 
 class Empleados_liquidados:
     def __init__(
@@ -25,7 +27,7 @@ class Empleados_liquidados:
         self.prima = resultado["prima"]
         self.vacaciones = resultado["vacaciones"]
         self.total = resultado["total"]
-    def EsIgual(self, otro):
+def EsIgual(self, otro:Empleados_liquidados):
         return (
             self.cedula == otro.cedula and
             self.nombre == otro.nombre and

@@ -1,8 +1,8 @@
 import sys 
 sys.path.append("src")
 import unittest
-from src.model.Empleados_liquidados import Empleados_liquidados
-from src.controller.controlador_liquidacion import Controlador_liquidacion
+from model.Empleados_liquidados import Empleados_liquidados
+from controller.controlador_liquidacion import Controlador_liquidacion
 class TestDbEmpleados(unittest.TestCase):
     def insertar_y_buscar_en_DB(self):
         empleadoprueba=Empleados_liquidados(
@@ -16,6 +16,8 @@ class TestDbEmpleados(unittest.TestCase):
         Controlador_liquidacion.Insertar(empleadoprueba)
         empleadoencontrado=Controlador_liquidacion.Buscar("1010101010")
         self.assertTrue(empleadoprueba.EsIgual(empleadoencontrado))
+if __name__ == '__main__':
+    unittest.main()
       
 
 
