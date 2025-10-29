@@ -11,7 +11,12 @@ class Empleados_liquidados:
         fecha_liquidacion,
         salario,
         dias_trabajados,
-        auxilio_de_transporte
+        auxilio_de_transporte,
+        cesantias=None,
+        intereses_cesantias=None,
+        prima=None,
+        vacaciones=None,
+        total=None
     ):
         self.cedula = cedula
         self.nombre = nombre
@@ -19,15 +24,24 @@ class Empleados_liquidados:
         self.salario = salario
         self.dias_trabajados = dias_trabajados
         self.auxilio_de_transporte = auxilio_de_transporte
-        # Calcular liquidación
-        liquidacion = LiquidacionDefinitiva(salario, dias_trabajados, auxilio_de_transporte)
-        resultado = liquidacion.calcular()
-        self.cesantias = resultado["cesantias"]
-        self.intereses_cesantias = resultado["intereses_cesantias"]
-        self.prima = resultado["prima"]
-        self.vacaciones = resultado["vacaciones"]
-        self.total = resultado["total"]
-def EsIgual(self, otro:Empleados_liquidados):
+
+        # Si no vienen valores de la BD, calcular la liquidación
+        if cesantias is None:
+            liquidacion = LiquidacionDefinitiva(salario, dias_trabajados, auxilio_de_transporte)
+            resultado = liquidacion.calcular()
+            self.cesantias = resultado["cesantias"]
+            self.intereses_cesantias = resultado["intereses_cesantias"]
+            self.prima = resultado["prima"]
+            self.vacaciones = resultado["vacaciones"]
+            self.total = resultado["total"]
+        else:
+            self.cesantias = cesantias
+            self.intereses_cesantias = intereses_cesantias
+            self.prima = prima
+            self.vacaciones = vacaciones
+            self.total = total
+
+    def EsIgual(self, otro: "Empleados_liquidados"):
         return (
             self.cedula == otro.cedula and
             self.nombre == otro.nombre and
