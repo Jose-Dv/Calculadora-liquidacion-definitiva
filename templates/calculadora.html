@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Liquidación Definitiva</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de tener un archivo CSS si deseas estilos -->
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Liquidación Definitiva</h1>
+        <form id="liquidacionForm" action="resultado.html" method="GET">
+            <label for="salario">Salario:</label>
+            <input type="number" id="salario" name="salario" required>
+
+            <label for="dias_trabajados">Días Trabajados:</label>
+            <input type="number" id="dias_trabajados" name="dias_trabajados" required>
+
+            <label for="auxilio_de_transporte">Auxilio de Transporte:</label>
+            <input type="number" id="auxilio_de_transporte" name="auxilio_de_transporte" required>
+
+            <button type="submit">Calcular Liquidación</button>
+        </form>
+    </div>
+</body>
+</html>
