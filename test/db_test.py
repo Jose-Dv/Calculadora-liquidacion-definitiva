@@ -5,6 +5,10 @@ from model.Empleados_liquidados import Empleados_liquidados
 from controller.controlador_liquidacion import Controlador_liquidacion
 
 class TestDbEmpleados(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        # Creamos la tabla si no existe
+        Controlador_liquidacion.Crear_tabla()
     def CreacionEmpleado(self):
         # Datos de prueba que usaremos en varios tests
         self.empleado_prueba = Empleados_liquidados(
